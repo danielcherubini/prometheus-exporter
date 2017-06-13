@@ -1,0 +1,49 @@
+{
+  "name": "prometheus-exporter",
+  "version": "0.0.0",
+  "description": "Library to run the official prometheus node_exporter as a child process",
+  "homepage": "https://github.com/danmademe/prometheus-exporter",
+  "author": {
+    "name": "Daniel Cherubini",
+    "email": "daniel@cherubini.casa",
+    "url": "https://cherubini.casa"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "keywords": [
+    "prometheus",
+    "node_exporter",
+    "stats"
+  ],
+  "devDependencies": {
+    "coveralls": "^2.12.0",
+    "eslint": "^3.18.0",
+    "eslint-config-xo-space": "^0.16.0",
+    "flow-bin": "^0.48.0",
+    "jest": "^19.0.2",
+    "jest-cli": "^20.0.0",
+    "nsp": "^2.6.3"
+  },
+  "scripts": {
+    "prepublish": "nsp check",
+    "pretest": "eslint . --fix",
+    "test": "jest"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "jest": true,
+      "node": true
+    }
+  },
+  "repository": "danmademe/prometheus-exporter",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "axios": "^0.16.2"
+  }
+}
