@@ -1,55 +1,76 @@
 {
-  "name": "prometheus-exporter",
-  "version": "0.0.0",
-  "description": "Library to run the official prometheus node_exporter as a child process",
-  "homepage": "https://github.com/danmademe/prometheus-exporter",
-  "author": {
-    "name": "Daniel Cherubini",
-    "email": "daniel@cherubini.casa",
-    "url": "https://cherubini.casa"
-  },
-  "files": [
-    "lib"
-  ],
-  "main": "lib/index.js",
-  "keywords": [
-    "prometheus",
-    "node_exporter",
-    "stats"
-  ],
-  "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "coveralls": "^2.12.0",
-    "eslint": "^3.18.0",
-    "eslint-config-xo-space": "^0.16.0",
-    "eslint-plugin-flowtype": "^2.34.0",
-    "flow-bin": "^0.48.0",
-    "flow-remove-types": "^1.2.1",
-    "jest": "^19.0.2",
-    "jest-cli": "^20.0.0",
-    "nsp": "^2.6.3"
-  },
-  "scripts": {
-    "start": "npm run build && node app.js",
-    "build": "rm -rf lib && npm run copy",
-    "copy": "cp -r src lib && flow-remove-types lib/ -d lib/ -p -i .flow",
-    "prepublish": "nsp check",
-    "pretest": "eslint . --fix",
-    "test": "jest"
-  },
-  "eslintConfig": {
-    "extends": "xo-space",
-    "env": {
-      "jest": true,
-      "node": true
+    "name": "prometheus-exporter",
+    "version": "0.0.0",
+    "description": "Library to run the official prometheus node_exporter as a child process",
+    "homepage": "https://github.com/danmademe/prometheus-exporter",
+    "author": {
+        "name": "Daniel Cherubini",
+        "email": "daniel@cherubini.casa",
+        "url": "https://cherubini.casa"
+    },
+    "files": [
+        "lib"
+    ],
+    "main": "lib/index.js",
+    "keywords": [
+        "prometheus",
+        "node_exporter",
+        "stats"
+    ],
+    "ava": {
+        "files": [
+            "tests/*.js"
+        ],
+        "source": [
+            "src/**/*.js",
+            "!lib/**/*"
+        ],
+        "concurrency": 5,
+        "failFast": true,
+        "powerAssert": false,
+        "require": [
+            "babel-register"
+        ],
+        "babel": "inherit"
+    },
+    "nyc": {
+        "include": [
+            "lib/**/*.js"
+        ],
+        "reporter": [
+            "text-summary"
+        ]
+    },
+    "devDependencies": {
+        "ava": "^0.19.1",
+        "babel-eslint": "^7.2.3",
+        "coveralls": "^2.12.0",
+        "eslint": "^3.18.0",
+        "eslint-config-xo-space": "^0.16.0",
+        "eslint-plugin-flowtype": "^2.34.0",
+        "flow-bin": "^0.48.0",
+        "flow-remove-types": "^1.2.1",
+        "nsp": "^2.6.3",
+        "nyc": "^11.0.2"
+    },
+    "scripts": {
+        "start": "npm run build && node app.js",
+        "build": "rm -rf lib && npm run copy",
+        "copy": "cp -r src lib && flow-remove-types lib/ -d lib/ -p -i .flow",
+        "prepublish": "nsp check",
+        "pretest": "eslint .",
+        "test": "npm run build && nyc ava"
+    },
+    "eslintConfig": {
+        "extends": "xo-space",
+        "env": {
+            "jest": true,
+            "node": true
+        }
+    },
+    "repository": "danmademe/prometheus-exporter",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "axios": "^0.16.2"
     }
-  },
-  "repository": "danmademe/prometheus-exporter",
-  "jest": {
-    "testEnvironment": "node"
-  },
-  "license": "Apache-2.0",
-  "dependencies": {
-    "axios": "^0.16.2"
-  }
 }

@@ -6,7 +6,7 @@ const axios = require('axios');
 const spawn = require('child_process').spawn;
 const Options = require('./options');
 
-function checkGeoipServiceUp(callback) {
+function checkPrometheusServiceUp(callback) {
     axios.get('http://localhost:4100', {
         params: {
             ip: '127.0.0.1'
@@ -29,10 +29,10 @@ function init(options: Object, callback: Function) {
     } else if (!options || options === null) {
         callback(new Error('Options is missing'), false);
     } else if (options, callback) {
-        //Check if the geo ip service is already up,
+        //Check if the prometheus service is already up,
         //if it is up it will return
-        checkGeoipServiceUp(geoIpServiceDown => {
-            if (geoIpServiceDown) {
+        checkPrometheusServiceUp(serviceUp => {
+            if (serviceUp) {
                 const command = path.join(__dirname, 'node_exporter');
                 let args = parseArgs(options);
                 const ls = spawn(command, args);
