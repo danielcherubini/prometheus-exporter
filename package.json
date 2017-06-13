@@ -57,7 +57,7 @@
     },
     "scripts": {
         "start": "npm run build && node app.js",
-        "build": "rm -rf lib && npm run copy && prom-install",
+        "build": "rm -rf lib && npm run copy && npm run prom-install",
         "prom-install": "node lib/download.js",
         "copy": "cp -r src lib && flow-remove-types lib/ -d lib/ -p -i .flow",
         "prepublish": "nsp check",
