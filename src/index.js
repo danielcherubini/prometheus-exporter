@@ -6,15 +6,12 @@ const axios = require('axios');
 const spawn = require('child_process').spawn;
 const Options = require('./options');
 
-function checkPrometheusServiceUp(callback) {
-    axios.get('http://localhost:4100', {
-        params: {
-            ip: '127.0.0.1'
-        }
-    }).then(() => {
-        callback(null);
-    }).catch((error) => {
-        callback(error);
+function checkPrometheusServiceDown(callback) {
+    axios.get('http://localhost:9100')
+    .then(() => {
+        callback(false);
+    }).catch(() => {
+        callback(true);
     });
 }
 
@@ -31,8 +28,8 @@ function init(options: Object, callback: Function) {
     } else if (options, callback) {
         //Check if the prometheus service is already up,
         //if it is up it will return
-        checkPrometheusServiceUp(serviceUp => {
-            if (serviceUp) {
+        checkPrometheusServiceDown((serviceDown) => {
+            if (serviceDown) {
                 const command = path.join(__dirname, 'node_exporter');
                 let args = parseArgs(options);
                 const ls = spawn(command, args);
