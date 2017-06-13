@@ -30,7 +30,7 @@ function init(options: Object, callback: Function) {
         //if it is up it will return
         checkPrometheusServiceDown((serviceDown) => {
             if (serviceDown) {
-                const command = path.join(__dirname, 'node_exporter');
+                const command = path.join(__dirname, '../', 'node_exporter');
                 let args = parseArgs(options);
                 const ls = spawn(command, args);
 

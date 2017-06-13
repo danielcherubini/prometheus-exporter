@@ -23,7 +23,7 @@ function downloadFile() {
     .then(releases => {
         const latestTagVersion = releases.data.tag_name;
         const filename = getFileName(latestTagVersion);
-        const fileStream = fs.createWriteStream(path.join(__dirname, '/lib/node_exporter'), {mode: 0o744, autoClose: true});
+        const fileStream = fs.createWriteStream(path.join(__dirname, '/node_exporter'), {mode: 0o744, autoClose: true});
         const axiosConfig = {
             method: 'get',
             url: `https://github.com/prometheus/node_exporter/releases/download/${latestTagVersion}/${filename}`,
