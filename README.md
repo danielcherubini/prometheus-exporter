@@ -1,6 +1,14 @@
 # prometheus-exporter [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > Library to run the official prometheus node_exporter as a child process
 
+## About
+
+This package will run the official node_exporter for prometheus as a child_process.
+
+It's functional right now, but will add promises later.
+
+For more information check out https://github.com/prometheus/node_exporter
+
 ## Installation
 
 ```sh
@@ -12,8 +20,28 @@ $ npm install --save prometheus-exporter
 ```js
 const prometheusExporter = require('prometheus-exporter');
 
-prometheusExporter('Rainbow');
+const options = {
+    collector: {
+        filesystem: {
+            'ignored-fs-types': '^devfs$'
+        }
+    },
+    log: {
+        format: 'logger:stdout?json=true'
+    }
+};
+
+prometheusExporter.init(options, function(error, success) {
+    if (error) {
+        throw error;
+    } else {
+        console.log('success');
+    }
+});
 ```
+
+## Options
+
 ## License
 
 Apache-2.0 © [Daniel Cherubini](https://cherubini.casa)
