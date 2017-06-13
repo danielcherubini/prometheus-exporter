@@ -45,6 +45,8 @@
         "ava": "^0.19.1",
         "babel-eslint": "^7.2.3",
         "coveralls": "^2.12.0",
+        "decompress": "^4.2.0",
+        "decompress-targz": "^4.1.0",
         "eslint": "^3.18.0",
         "eslint-config-xo-space": "^0.16.0",
         "eslint-plugin-flowtype": "^2.34.0",
@@ -55,7 +57,8 @@
     },
     "scripts": {
         "start": "npm run build && node app.js",
-        "build": "rm -rf lib && npm run copy",
+        "build": "rm -rf lib && npm run copy && prom-install",
+        "prom-install": "node lib/download.js",
         "copy": "cp -r src lib && flow-remove-types lib/ -d lib/ -p -i .flow",
         "prepublish": "nsp check",
         "pretest": "eslint .",
