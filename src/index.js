@@ -18,13 +18,12 @@ function checkGeoipServiceUp(callback) {
     });
 }
 
-function parseArgs(options): string[] {
+function parseArgs(options: Object): string[] {
     const args = new Options(options);
-    console.log(args);
-    return [];
+    return args.args;
 }
 
-function init(options, callback) {
+function init(options: Object, callback: Function) {
     if (!callback) {
         throw new Error('Callback is missing');
     } else if (!options || options === null) {
@@ -62,8 +61,7 @@ function init(options, callback) {
             }
         });
     }
-
 }
 
 module.exports.init = init;
-module.exports.options = options;
+module.exports.options = Options;

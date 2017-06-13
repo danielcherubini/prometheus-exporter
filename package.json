@@ -24,11 +24,13 @@
     "eslint-config-xo-space": "^0.16.0",
     "eslint-plugin-flowtype": "^2.34.0",
     "flow-bin": "^0.48.0",
+    "flow-remove-types": "^1.2.1",
     "jest": "^19.0.2",
     "jest-cli": "^20.0.0",
     "nsp": "^2.6.3"
   },
   "scripts": {
+    "start": "npm run build && node app.js",
     "build": "rm -rf lib && npm run copy",
     "copy": "cp -r src lib && flow-remove-types lib/ -d lib/ -p -i .flow",
     "prepublish": "nsp check",
