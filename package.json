@@ -1,6 +1,6 @@
 {
     "name": "prometheus-exporter",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Library to run the official prometheus node_exporter as a child process",
     "homepage": "https://github.com/danmademe/prometheus-exporter",
     "author": {
