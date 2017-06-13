@@ -1,5 +1,14 @@
 language: node_js
 node_js:
-  - 8
-  - 7
-  - 6
+- 8
+- 7
+- 6
+deploy:
+  provider: npm
+  email: daniel@cherubini.casa
+  api_key:
+    secure: i4HfuP/ifDxdM1KXIcZYapk9vsFF1j9EyG5pYehpNyhuRyRtKJZxwnnj7FesjKDGhzPuz5CU1gkgUg7mbGP1+mCwy9tkbrBFqrMxio+as363I9J+/bBiGBtOaeKM+r0CIkkdF9lQNpePOtZGgmZeW9jYtCAak/MwFoI9f8pyA07evaozv1a7MLpnipyA/dcSQU8+AZx7oSRjd3avMoeyTkA5IXsY38+zPcmMG1V+aMsRw1hjAQZttIzySmFI44qK545k6i1NkKYROtRPzTti+aBp8FPhU6KSZi2xOlb65MToFFlWxEIXhWYbsfUMTjMt4Jw9Z4vBjNO6M2Eub7AvYNkN0q/771V0DIabShMNdaGTScFTdvpaWHJpHPutpo1I/pKk2zhuGCSt6OH4zeYbdZ10ho2LdW3000bC62tTZQ0qdXazCixm6jut62i0jwe54o80p8KDJMfl+i92lsP+CLK7jJEunTYNJA7LgrDKRSvLIasy2eNnO9+qnZ+OEbMSSz9xB5bACWW1S2JHwJ5UtIJNmL3CJloAiXjF5amrSWVeqPAPhpTwJwEUiTpKoKQVV0PYJWBUL0EcFrLdQQdnBNXf/x8y+U1Kav6pfVOM6Wn3QwVfKANLiHk74Ok5idY2+ijg59umrZKjVgf/mQlmoDs0qwNNKKw2mIAw10yuPMQ=
+  on:
+    tags: true
+    repo: danmademe/prometheus-exporter
+    branch: master

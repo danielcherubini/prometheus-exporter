@@ -44,7 +44,7 @@
     "devDependencies": {
         "ava": "^0.19.1",
         "babel-eslint": "^7.2.3",
-        "coveralls": "^2.12.0",
+        "coveralls": "^2.13.1",
         "eslint": "^3.18.0",
         "eslint-config-xo-space": "^0.16.0",
         "eslint-plugin-flowtype": "^2.34.0",
@@ -64,7 +64,8 @@
         "install": "npm run prom-install",
         "preversion": "npm run test",
         "version": "git add .",
-        "postversion": "git push --follow-tags"
+        "postversion": "git push --follow-tags",
+        "coverage": "nyc report --reporter=text-lcov | coveralls"
     },
     "eslintConfig": {
         "extends": "xo-space",
