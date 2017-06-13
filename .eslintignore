@@ -1,1 +1,5 @@
 coverage
+flow-typed
+tests
+lib
+app.js

@@ -18,15 +18,19 @@
     "stats"
   ],
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
     "coveralls": "^2.12.0",
     "eslint": "^3.18.0",
     "eslint-config-xo-space": "^0.16.0",
+    "eslint-plugin-flowtype": "^2.34.0",
     "flow-bin": "^0.48.0",
     "jest": "^19.0.2",
     "jest-cli": "^20.0.0",
     "nsp": "^2.6.3"
   },
   "scripts": {
+    "build": "rm -rf lib && npm run copy",
+    "copy": "cp -r src lib && flow-remove-types lib/ -d lib/ -p -i .flow",
     "prepublish": "nsp check",
     "pretest": "eslint . --fix",
     "test": "jest"

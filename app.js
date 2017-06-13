@@ -1,5 +1,5 @@
 // @flow
-const prometheusExporter = require('./lib');
+const prometheusExporter = require('./src');
 
 
 const options = {
