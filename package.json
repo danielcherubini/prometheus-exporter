@@ -61,7 +61,7 @@
         "prepare": "nsp check",
         "pretest": "eslint .",
         "test": "npm run build && nyc ava",
-        "install": "npm run prom-install",
+        "postinstall": "npm run prom-install",
         "preversion": "npm run test",
         "version": "git add .",
         "postversion": "git push --follow-tags",
