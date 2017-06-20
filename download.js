@@ -17,37 +17,45 @@ function getFileName(version) {
     return file;
 }
 
-function downloadFile() {
-    console.warn('Downloading Latest node_exporter Release');
-    axios.get('https://api.github.com/repos/prometheus/node_exporter/releases/latest')
-        .then(releases => {
-            const latestTagVersion = releases.data.tag_name;
-            const filename = getFileName(latestTagVersion);
-            const fileStream = fs.createWriteStream(path.join(__dirname, '/node_exporter'), {mode: 0o744, autoClose: true});
-            const axiosConfig = {
-                method: 'get',
-                url: `https://github.com/prometheus/node_exporter/releases/download/${latestTagVersion}/${filename}`,
-                responseType: 'stream'
-            };
-            axios(axiosConfig)
-                .then(release => {
-                    decompressTargz()(release.data).then(files => {
-                        for (const file of files) {
-                            if (file.path.includes('/node_exporter')) {
-                                fileStream.write(file.data);
-                                console.warn(`Downloaded Latest Release: ${filename}`);
-                            }
-                        }
-                    });
-                })
-                .catch(error => {
-                    throw error;
-                });
+function downloadRelease(latestTagVersion) {
+    const filename = getFileName(latestTagVersion);
+    const fileStream = fs.createWriteStream(path.join(__dirname, '/node_exporter'), {mode: 0o744, autoClose: true});
+    const axiosConfig = {
+        method: 'get',
+        url: `https://github.com/prometheus/node_exporter/releases/download/${latestTagVersion}/${filename}`,
+        responseType: 'stream'
+    };
+    axios(axiosConfig)
+        .then(release => {
+            decompressTargz()(release.data).then(files => {
+                for (const file of files) {
+                    if (file.path.includes('/node_exporter')) {
+                        fileStream.write(file.data);
+                        console.warn(`Downloaded Latest Release: ${filename}`);
+                    }
+                }
+            });
         })
         .catch(error => {
-            console.error(error);
             throw error;
         });
 }
 
-downloadFile();
+
+function findLatestRelease() {
+    console.warn('Downloading Latest node_exporter Release');
+    axios.get('https://api.github.com/repos/prometheus/node_exporter/releases/latest')
+        .then(releases => {
+            const latestTagVersion = releases.data.tag_name;
+            downloadRelease(latestTagVersion);
+        })
+        .catch(error => {
+            if (error.response.status === 403) {
+                downloadRelease('v0.14.0');
+            } else {
+                throw error;
+            }
+        });
+}
+
+findLatestRelease();
