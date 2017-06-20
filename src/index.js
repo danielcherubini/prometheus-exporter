@@ -8,11 +8,11 @@ const Options = require('./options');
 
 function checkPrometheusServiceDown(callback) {
     axios.get('http://localhost:9100')
-    .then(() => {
-        callback(false);
-    }).catch(() => {
-        callback(true);
-    });
+        .then(() => {
+            callback(false);
+        }).catch(() => {
+            callback(true);
+        });
 }
 
 function parseArgs(options: Object): string[] {
