@@ -30,19 +30,19 @@ function downloadFile() {
                 responseType: 'stream'
             };
             axios(axiosConfig)
-            .then(release => {
-                decompressTargz()(release.data).then(files => {
-                    for (const file of files) {
-                        if (file.path.includes('/node_exporter')) {
-                            fileStream.write(file.data);
-                            console.warn(`Downloaded Latest Release: ${filename}`);
+                .then(release => {
+                    decompressTargz()(release.data).then(files => {
+                        for (const file of files) {
+                            if (file.path.includes('/node_exporter')) {
+                                fileStream.write(file.data);
+                                console.warn(`Downloaded Latest Release: ${filename}`);
+                            }
                         }
-                    }
+                    });
+                })
+                .catch(error => {
+                    throw error;
                 });
-            })
-            .catch(error => {
-                throw error;
-            });
         })
         .catch(error => {
             console.error(error);
