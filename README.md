@@ -1,4 +1,4 @@
-# prometheus-exporter [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# prometheus-exporter [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url] [![Greenkeeper badge](https://badges.greenkeeper.io/danmademe/prometheus-exporter.svg)](https://greenkeeper.io/)
 > Library to run the official prometheus node_exporter as a child process
 
 ## About
