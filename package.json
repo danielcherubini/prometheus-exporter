@@ -78,7 +78,7 @@
     "repository": "danmademe/prometheus-exporter",
     "license": "Apache-2.0",
     "dependencies": {
-        "axios": "^0.16.2",
+        "axios": "^0.17.1",
         "decompress-targz": "^4.1.0"
     }
 }
