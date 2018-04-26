@@ -2,6 +2,7 @@ language: node_js
 node_js:
 - 7
 - 6
+- 10
 before_install:
 # package-lock.json was introduced in npm@5
 - npm install -g npm@5
