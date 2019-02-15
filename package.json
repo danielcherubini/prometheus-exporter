@@ -52,7 +52,7 @@
         "flow-bin": "^0.55.0",
         "flow-remove-types": "^1.2.1",
         "nsp": "^2.6.3",
-        "nyc": "^11.0.2"
+        "nyc": "^13.3.0"
     },
     "scripts": {
         "start": "npm run build && node app.js",
