@@ -48,7 +48,7 @@
         "coveralls": "^3.0.0",
         "eslint": "^4.0.0",
         "eslint-config-xo-space": "^0.16.0",
-        "eslint-plugin-flowtype": "^2.34.0",
+        "eslint-plugin-flowtype": "^5.1.1",
         "flow-bin": "^0.55.0",
         "flow-remove-types": "^1.2.1",
         "nsp": "^2.6.3",
